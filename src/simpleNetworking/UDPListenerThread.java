@@ -30,6 +30,7 @@ public class UDPListenerThread extends Thread
 		        this.socket.receive(receivePacket);
 		        
 		        this.receivedDataQueue.add(receivePacket.getData());
+
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -41,6 +42,7 @@ public class UDPListenerThread extends Thread
 	{
 		try {
 			byte[] data = this.receivedDataQueue.remove();
+			
 			return data;
 		} catch (NoSuchElementException e) {
 			return null;
