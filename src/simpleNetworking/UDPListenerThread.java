@@ -16,7 +16,7 @@ public class UDPListenerThread extends Thread
 	public UDPListenerThread(int listenPort) throws SocketException
 	{
 		this.listenPort = listenPort;
-		this.socket = new DatagramSocket(9898);
+		this.socket = new DatagramSocket(listenPort);
 	}
 
 	@Override
