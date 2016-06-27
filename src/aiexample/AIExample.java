@@ -10,7 +10,10 @@ public class AIExample
 	
 	public static void main(String args[]) throws Exception
 	{
+		// Create the AI itself
 		AILogicExample ai = new AILogicExample();
+		
+		// The AIBsonDeserialiser will take bson updates and interpret them for the AI
 		AIBsonDeserialiser aiBson = new AIBsonDeserialiser(ai);
 				
 		UDPListenerThread listener = new UDPListenerThread(LISTEN_PORT);

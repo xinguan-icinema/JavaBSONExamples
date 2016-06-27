@@ -4,7 +4,6 @@ public class AILogicExample implements AILogicInterface
 {
 	@Override
 	public void UpdatePlayerPosition(int id, float x, float y, float z) {
-		// TODO Auto-generated method stub
 		
 	}
 
