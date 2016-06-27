@@ -13,22 +13,27 @@ public class BSONListener
 		this.udpListener = listener;
 	}
 	
-	public BSONObject GetNextBsonObject()
+	/**
+	 * All the BSON types are a bit confusing, but we want to use BsonDocument
+	 * as it has type-safe get and set functions
+	 * @return
+	 */
+	public BsonDocument GetNextBsonObject()
 	{
 		byte[] data = this.udpListener.GetDataFromQueue();
 		
-		BSONObject obj = null;
+		BsonDocument doc = null;
 		
 		if (data != null) 
 		{
 			try {
-				BSONDecoder decoder = new BasicBSONDecoder();
-				obj = decoder.readObject(data);
+				doc = new RawBsonDocument(data);
+				
 			} catch (BsonSerializationException e) {
 				System.err.println(e.toString());
 			}
 		}
-		return obj;
+		return doc;
 	}
 
 }

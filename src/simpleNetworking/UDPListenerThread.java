@@ -6,8 +6,12 @@ import java.util.NoSuchElementException;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
+
 public class UDPListenerThread extends Thread
 {
+	final int MAX_DATA_SIZE = 2048; // Not sure what this should actually be, just a magic number right now
+
+	
 	int listenPort;
 	DatagramSocket socket;
 	
@@ -18,6 +22,7 @@ public class UDPListenerThread extends Thread
 		this.listenPort = listenPort;
 		this.socket = new DatagramSocket(listenPort);
 	}
+	
 
 	@Override
 	public void run() 
@@ -25,7 +30,7 @@ public class UDPListenerThread extends Thread
 		while (true)
 		{
 			try {
-				byte[] receiveData = new byte[2048];
+				byte[] receiveData = new byte[MAX_DATA_SIZE];
 		        DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
 		        this.socket.receive(receivePacket);
 		        
@@ -38,6 +43,7 @@ public class UDPListenerThread extends Thread
 		}
 	}
 	
+	/** Returns null if there is no more data in the queue **/
 	public byte[] GetDataFromQueue()
 	{
 		try {
