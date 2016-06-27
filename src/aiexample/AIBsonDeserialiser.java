@@ -1,7 +1,7 @@
 package aiexample;
 
 import org.bson.*;
-import org.bson.types.BasicBSONList;
+import aiexample.logic.AILogicInterface;
 
 /***
  * Example BSON message from Unity:
@@ -87,6 +87,10 @@ public class AIBsonDeserialiser
 			try {
 				switch (typeStr.getValue()) 
 				{
+				case "player count":
+					UpdatePlayerCount(data);
+					break;
+					
 				case "player pos":
 					UpdatePlayerPosition(data);
 					break;
@@ -118,5 +122,11 @@ public class AIBsonDeserialiser
 		String action = data.getString("action").getValue();
 		
 		this.aiLogic.UpdatePlayerAction(id, action);
+	}
+	
+	void UpdatePlayerCount(BsonDocument data) throws BsonInvalidOperationException
+	{
+		int count = data.getInt32("count").getValue();
+		this.aiLogic.SetPlayerCount(count);
 	}
 }
