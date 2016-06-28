@@ -33,6 +33,9 @@ public class AILogicExample implements AILogicInterface
 	@Override
 	public void SetPlayerCount(int count) 
 	{
+		String s = String.format("Player count has been reset to %d. This probably means you just started the Unity scene", count);
+		System.out.println(s);
+		
 		this.players = new Player[count];
 		
 		for (int i = 0; i < count; ++i)
