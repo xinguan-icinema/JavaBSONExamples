@@ -22,13 +22,19 @@ import aiexample.logic.AILogicInterface;
  *   ]
  * }
  * 
+ * Note that I have made the Unity side send over a list of updates every frame.
+ * You could also write it so that each individual update comes in it's own 
+ * UDP datagram, which is probably simpler (this is what the BsonOutputInterface 
+ * does when sending back to Unity)
  */
 
 /***
- * Interprets updates for the AI that have been serialised in bson
+ * Interprets updates for the AI that have been serialised in bson and passes
+ * the appropriate information to the AI Logic
  * 
- * It's good to have this as it's own class, so the actual AI algorithms don't have to
- * worry about communication
+ * It's good to have this as it's own class, so the actual AI algorithms can
+ * interface purely through normal function calls and don't have to worry about
+ * communication with other modules
  * @author som
  *
  */
@@ -62,7 +68,8 @@ public class AIBsonDeserialiser
 		}
 			
 	}
-		
+	
+	/** Go through each world update in the list **/
 	void DeserialiseWorld(BsonArray worldArray)
 	{
 		for (BsonValue v : worldArray)

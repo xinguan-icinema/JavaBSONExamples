@@ -6,12 +6,17 @@ import java.util.NoSuchElementException;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-
+/**
+ * Listens for data on a given UDP port and adds the raw messages to a queue
+ * Make sure you have something constantly consuming from the queue, otherwise 
+ * it will start to fill up!
+ * @author som
+ *
+ */
 public class UDPListenerThread extends Thread
 {
-	final int MAX_DATA_SIZE = 2048; // Not sure what this should actually be, just a magic number right now
+	final int MAX_DATA_SIZE = 4096; // Not sure what this should actually be, just a magic number right now
 
-	
 	int listenPort;
 	DatagramSocket socket;
 	
@@ -23,7 +28,6 @@ public class UDPListenerThread extends Thread
 		this.socket = new DatagramSocket(listenPort);
 	}
 	
-
 	@Override
 	public void run() 
 	{

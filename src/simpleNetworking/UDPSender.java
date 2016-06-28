@@ -2,6 +2,13 @@ package simpleNetworking;
 
 import java.io.IOException;
 import java.net.*;
+
+/**
+ * UDP is really simple, but it's still nice to have a wrapper like this to keep track
+ * of ports and handle exceptions
+ * @author som
+ *
+ */
 public class UDPSender 
 {
 	DatagramSocket socket;
@@ -13,6 +20,10 @@ public class UDPSender
 		this.socket = new DatagramSocket();
 		this.address = address;
 		this.remotePort = remotePort;
+	}
+	
+	public void SetRemotePort(int port) {
+		this.remotePort = port;
 	}
 	
 	public boolean Send(byte[] data)

@@ -1,7 +1,7 @@
 package aiexample.logic;
 
 /**
- * A general interface that allows an AI to communicate back
+ * A general interface that allows an AI to output commands
  * @author som
  *
  */
